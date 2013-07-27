@@ -14,9 +14,9 @@
 //Pin Definitions
 //The 74HC595 using a protocol called SPI (for more details http://www.arduino.cc/en/Tutorial/ShiftOut)
 //Which has three pins
-int data = 2; 
-int clock = 3;
-int latch = 4;
+int data = 8; 
+int clock = 10;
+int latch = 9;
 
 //Used for single LED manipulation
 int ledState = 0;
