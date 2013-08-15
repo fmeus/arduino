@@ -16,6 +16,8 @@ DallasTemperature sensors(&oneWire);
 
 DeviceAddress insideThermometer = { 0x28, 0x95, 0xC2, 0x52, 0x04, 0x00, 0x00, 0xA4 };
 
+float tempMax, tempMin;
+
 void setup(void)
 {
   // start serial port
@@ -34,9 +36,17 @@ void printTemperature(DeviceAddress deviceAddress)
   } else {
     Serial.print("C: ");
     Serial.print(tempC);
-    Serial.print(" F: ");
-    Serial.print(DallasTemperature::toFahrenheit(tempC));
+//    Serial.print(" F: ");
+//    Serial.print(DallasTemperature::toFahrenheit(tempC));
   }
+  if ( tempC < tempMin || tempMin == NULL ) { tempMin = tempC; }
+  if ( tempC > tempMax || tempMax == NULL ) { tempMax = tempC; }
+  
+  Serial.print( " (Min = " );
+  Serial.print( tempMin );
+  Serial.print( ", Max = " );
+  Serial.print( tempMax );  
+  Serial.print( ")" );  
 }
 
 void loop(void)
